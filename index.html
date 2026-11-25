@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Parfum by Arif — Ətirlər, Gümüş və Bijuteriya</title>
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --card: #16161a;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.16);
+      --text: #f5f5f7;
+      --muted: #a6a6b0;
+      --border: #282830;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px;
+      text-align: center;
+      background: linear-gradient(180deg, #151411 0%, var(--bg) 100%);
+    }
+    .brand {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .notice {
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #f3dfb0;
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 16px 48px;
+    }
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filter-btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: var(--gold);
+      color: #111;
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--gold);
+      background: var(--gold-soft);
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: var(--gold);
+      color: #111;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">✦ MI PARFUM BY ARIF</div>
+    <div class="subtitle">Ətirlər • Zərli Spreylər • Gümüş &amp; Bijuteriya</div>
+  </header>
+
+  <div class="notice">
+    Ödəniş məhsul təhvil verilərkən <strong>nağd</strong> qəbul olunur • Sifarişlər birbaşa WhatsApp vasitəsilə rəsmiləşdirilir
+  </div>
+
+  <div class="container">
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterItems('Hamısı', this)">Hamısı</button>
+      <button class="filter-btn" onclick="filterItems('Ətirlər', this)">Ətirlər</button>
+      <button class="filter-btn" onclick="filterItems('Spreylər', this)">Spreylər</button>
+      <button class="filter-btn" onclick="filterItems('Gümüş & Bijuteriya', this)">Gümüş &amp; Bijuteriya</button>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </div>
+
+  <footer>
+    <p><strong>Mi Parfum by Arif</strong> — Bakı / Mərdəkan • Çatdırılma razılaşdırılmış vaxtda</p>
+    <p style="margin-top:6px;">Ödəniş üsulu: Qapıda nağd ödəniş</p>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "994500000000";
+
+    const products = [
+      {
+        name: "Xüsusi Qarışıq Ətir (Unisex)",
+        category: "Ətirlər",
+        desc: "Yüksək qalıcılıq, fərdi seçim və estetik qablaşdırma.",
+        price: "25 AZN"
+      },
+      {
+        name: "Bədən Zərli Spreyi",
+        category: "Spreylər",
+        desc: "Dəridə incə parıltı və xoş ətirli təravət yaradır.",
+        price: "18 AZN"
+      },
+      {
+        name: "Gümüş Zinyət / Aksesuar",
+        category: "Gümüş & Bijuteriya",
+        desc: "Hədiyyəlik və gündəlik istifadə üçün zövqlü model.",
+        price: "35 AZN"
+      },
+      {
+        name: "Bijuteriya Dəsti",
+        category: "Gümüş & Bijuteriya",
+        desc: "Yüngül, dəbli və xüsusi günlər üçün ideal seçim.",
+        price: "15 AZN"
+      }
+    ];
+
+    function renderProducts(list) {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = list.map(p => {
+        const msg = encodeURIComponent(
+          `Salam! "${p.name}" (${p.price}) sifariş etmək istəyirəm. Ödəniş: Qapıda nağd.`
+        );
+        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+        return `
+          <div class="card">
+            <div>
+              <span class="tag">${p.category}</span>
+              <div class="title">${p.name}</div>
+              <div class="desc">${p.desc}</div>
+            </div>
+            <div>
+              <div class="price">${p.price}</div>
+              <a class="btn" href="${waLink}" target="_blank" rel="noopener">Nağd sifariş et (WhatsApp)</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function filterItems(cat, btn) {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      if (cat === "Hamısı") {
+        renderProducts(products);
+      } else {
+        renderProducts(products.filter(p => p.category === cat));
+      }
+    }
+
+    renderProducts(products);
+  </script>
+</body>
+</html>
