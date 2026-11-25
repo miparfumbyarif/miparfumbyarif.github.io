@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Parfum by Arif — Ətirlər, Gümüş və Bijuteriya</title>
+  <title>Mi Parfum by Arif</title>
   <style>
     :root {
       --bg: #0d0d0f;
@@ -19,16 +19,16 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.45;
     }
     header {
       border-bottom: 1px solid var(--border);
-      padding: 20px 16px;
+      padding: 18px 16px;
       text-align: center;
       background: linear-gradient(180deg, #151411 0%, var(--bg) 100%);
     }
     .brand {
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 700;
       color: var(--gold);
       letter-spacing: 1px;
@@ -40,22 +40,34 @@
     }
     .notice {
       background: var(--gold-soft);
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
       color: #f3dfb0;
       text-align: center;
-      padding: 10px 14px;
+      padding: 9px 14px;
       font-size: 13px;
     }
     .container {
-      max-width: 960px;
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 20px 16px 48px;
+      padding: 18px 16px 48px;
     }
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--gold); }
     .filters {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .filter-btn {
       background: var(--card);
@@ -74,43 +86,88 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
       gap: 16px;
     }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 16px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .tag {
+    .thumb {
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      display: block;
+      background: #101014;
+      border-bottom: 1px solid var(--border);
+    }
+    .body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .cat-tag {
       display: inline-block;
       font-size: 11px;
       color: var(--gold);
       background: var(--gold-soft);
-      padding: 3px 8px;
+      padding: 2px 8px;
       border-radius: 6px;
-      margin-bottom: 10px;
-      width: fit-content;
+      margin-bottom: 6px;
     }
     .title {
       font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
     .desc {
       font-size: 13px;
       color: var(--muted);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
+    }
+    .stars-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 10px;
+      padding: 7px 8px;
+      background: #101014;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .stars {
+      display: flex;
+      gap: 3px;
+    }
+    .star-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #4a4a55;
+      line-height: 1;
+      padding: 0 1px;
+    }
+    .star-btn.active { color: #ffd43b; }
+    .score-text {
+      font-size: 12px;
+      color: #ffd43b;
+      font-weight: 600;
+      white-space: nowrap;
     }
     .price {
       font-size: 18px;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .btn {
       display: block;
@@ -126,102 +183,172 @@
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
-      padding: 24px 16px;
+      padding: 22px 16px;
       color: var(--muted);
       font-size: 13px;
+      margin-top: 28px;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="brand">✦ MI PARFUM BY ARIF</div>
-    <div class="subtitle">Ətirlər • Zərli Spreylər • Gümüş &amp; Bijuteriya</div>
+    <div class="subtitle">Yağ Ətirlər • Qutu Ətirlər • Gümüş</div>
   </header>
 
   <div class="notice">
-    Ödəniş məhsul təhvil verilərkən <strong>nağd</strong> qəbul olunur • Sifarişlər birbaşa WhatsApp vasitəsilə rəsmiləşdirilir
+    Qapıda <strong>nağd ödəniş</strong> • Sifarişlər birbaşa WhatsApp ilə qəbul olunur
   </div>
 
   <div class="container">
+    <input
+      type="text"
+      id="searchBox"
+      class="search-input"
+      placeholder="Ətir və ya gümüş axtarın..."
+      oninput="render()"
+    />
+
     <div class="filters">
-      <button class="filter-btn active" onclick="filterItems('Hamısı', this)">Hamısı</button>
-      <button class="filter-btn" onclick="filterItems('Ətirlər', this)">Ətirlər</button>
-      <button class="filter-btn" onclick="filterItems('Spreylər', this)">Spreylər</button>
-      <button class="filter-btn" onclick="filterItems('Gümüş & Bijuteriya', this)">Gümüş &amp; Bijuteriya</button>
+      <button class="filter-btn active" onclick="setCat('Hamısı', this)">Hamısı</button>
+      <button class="filter-btn" onclick="setCat('Yağ Ətirlər', this)">Yağ Ətirlər</button>
+      <button class="filter-btn" onclick="setCat('Qutu Ətirlər', this)">Qutu Ətirlər</button>
+      <button class="filter-btn" onclick="setCat('Gümüş', this)">Gümüş</button>
     </div>
 
-    <div class="grid" id="productGrid"></div>
+    <div class="grid" id="grid"></div>
   </div>
 
   <footer>
-    <p><strong>Mi Parfum by Arif</strong> — Bakı / Mərdəkan • Çatdırılma razılaşdırılmış vaxtda</p>
-    <p style="margin-top:6px;">Ödəniş üsulu: Qapıda nağd ödəniş</p>
+    <p><strong>Mi Parfum by Arif</strong> — Bakı / Mərdəkan • Qapıda nağd ödəniş</p>
   </footer>
 
   <script>
     const WHATSAPP_NUMBER = "994998997455";
 
-    const products = [
-      {
-        name: "Xüsusi Qarışıq Ətir (Unisex)",
-        category: "Ətirlər",
-        desc: "Yüksək qalıcılıq, fərdi seçim və estetik qablaşdırma.",
-        price: "25 AZN"
-      },
-      {
-        name: "Bədən Zərli Spreyi",
-        category: "Spreylər",
-        desc: "Dəridə incə parıltı və xoş ətirli təravət yaradır.",
-        price: "18 AZN"
-      },
-      {
-        name: "Gümüş Zinyət / Aksesuar",
-        category: "Gümüş & Bijuteriya",
-        desc: "Hədiyyəlik və gündəlik istifadə üçün zövqlü model.",
-        price: "35 AZN"
-      },
-      {
-        name: "Bijuteriya Dəsti",
-        category: "Gümüş & Bijuteriya",
-        desc: "Yüngül, dəbli və xüsusi günlər üçün ideal seçim.",
-        price: "15 AZN"
-      }
+    // Şəkil adını bu formada verin:
+    // Yag-25AZN-Oud Wood-Qaliciliq ela.jpg
+    // Qutu-55AZN-Sauvage-Orijinal qutu.jpg
+    // Gumus-40AZN-Gumus uzuk-925 eyar.jpg
+    const AUTO_IMAGES = [
+      "Yag-25AZN-Oud Wood-Qaliciliq ve şleyf ela.jpg",
+      "Qutu-50AZN-Secilmis Etir-Hediyyelik qutu.jpg",
+      "Gumus-40AZN-Gumus Model-Zovqlu dizayn.jpg"
     ];
 
-    function renderProducts(list) {
-      const grid = document.getElementById("productGrid");
-      grid.innerHTML = list.map(p => {
+    // İstəsəniz bura da qısa əlavə edə bilərsiniz (şəkil yükləmədən)
+    const MANUAL_ITEMS = [];
+
+    let currentCat = "Hamısı";
+
+    function parseImageName(filename) {
+      const clean = decodeURIComponent(filename.split("/").pop().replace(/\.[^/.]+$/, ""));
+      const parts = clean.split("-");
+      const prefix = (parts[0] || "").trim().toLowerCase();
+
+      let category = "Yağ Ətirlər";
+      if (prefix.startsWith("qutu")) category = "Qutu Ətirlər";
+      else if (prefix.startsWith("gumus") || prefix.startsWith("gümüş")) category = "Gümüş";
+      else if (prefix.startsWith("yag") || prefix.startsWith("yağ")) category = "Yağ Ətirlər";
+
+      let price = "Razılaşma ilə";
+      let name = "Məhsul";
+      let desc = "";
+
+      if (parts.length >= 3) {
+        const rawPrice = parts[1].trim();
+        price = /azn/i.test(rawPrice) ? rawPrice : `${rawPrice} AZN`;
+        name = parts[2].trim();
+        desc = parts.slice(3).join("-").trim();
+      } else {
+        name = clean;
+      }
+
+      return { id: filename, name, category, price, desc, img: filename };
+    }
+
+    function getRatingsMap() {
+      try {
+        return JSON.parse(localStorage.getItem("miparfum_stars") || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function setStar(id, starVal) {
+      const map = getRatingsMap();
+      map[id] = starVal;
+      localStorage.setItem("miparfum_stars", JSON.stringify(map));
+      render();
+    }
+
+    function setCat(cat, btn) {
+      currentCat = cat;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render();
+    }
+
+    function render() {
+      const q = document.getElementById("searchBox").value.trim().toLowerCase();
+      const allItems = [
+        ...AUTO_IMAGES.map(parseImageName),
+        ...MANUAL_ITEMS
+      ];
+      const ratings = getRatingsMap();
+
+      const list = allItems.filter(item => {
+        const okCat = currentCat === "Hamısı" || item.category === currentCat;
+        const okText =
+          !q ||
+          item.name.toLowerCase().includes(q) ||
+          item.desc.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q);
+        return okCat && okText;
+      });
+
+      const grid = document.getElementById("grid");
+      if (!list.length) {
+        grid.innerHTML = `<p style="color:var(--muted);">Məhsul tapılmadı.</p>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(item => {
+        const star = ratings[item.id] || 0;
+        const starText = star ? `${star}/5 ★` : "Ulduz ver";
         const msg = encodeURIComponent(
-          `Salam! "${p.name}" (${p.price}) sifariş etmək istəyirəm. Ödəniş: Qapıda nağd.`
+          `Salam! "${item.name}" (${item.price}) sifariş etmək istəyirəm${star ? ` | Qiymət: ${star} ulduz` : ""}. Ödəniş: Qapıda nağd.`
         );
-        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+
+        const starsHtml = [1, 2, 3, 4, 5].map(n =>
+          `<button class="star-btn ${n <= star ? "active" : ""}" onclick="setStar('${item.id.replace(/'/g, "\\'")}', ${n})" title="${n} ulduz">★</button>`
+        ).join("");
+
         return `
           <div class="card">
-            <div>
-              <span class="tag">${p.category}</span>
-              <div class="title">${p.name}</div>
-              <div class="desc">${p.desc}</div>
-            </div>
-            <div>
-              <div class="price">${p.price}</div>
-              <a class="btn" href="${waLink}" target="_blank" rel="noopener">Nağd sifariş et (WhatsApp)</a>
+            <img class="thumb" src="${item.img}" alt="${item.name}" onerror="this.style.display='none'" />
+            <div class="body">
+              <div>
+                <span class="cat-tag">${item.category}</span>
+                <div class="title">${item.name}</div>
+                ${item.desc ? `<div class="desc">${item.desc}</div>` : ""}
+              </div>
+              <div>
+                <div class="stars-row">
+                  <div class="stars">${starsHtml}</div>
+                  <span class="score-text">${starText}</span>
+                </div>
+                <div class="price">${item.price}</div>
+                <a class="btn" href="${waUrl}" target="_blank" rel="noopener">Nağd sifariş et (WhatsApp)</a>
+              </div>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    function filterItems(cat, btn) {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      if (cat === "Hamısı") {
-        renderProducts(products);
-      } else {
-        renderProducts(products.filter(p => p.category === cat));
-      }
-    }
-
-    renderProducts(products);
+    render();
   </script>
 </body>
 </html>
